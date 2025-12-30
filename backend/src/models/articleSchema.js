@@ -11,12 +11,21 @@ const articleSchema = new Schema(
     content: String,
     sourceUrl: {
       type: String,
-      unique: true 
+      unique: true
     },
     isUpdated: {
       type: Boolean,
       default: false
-    }
+    },
+
+    updatedContent: {
+      type: String
+    },
+    references: [
+      {
+        type: String
+      }
+    ]
   },
   { timestamps: true }
 );
