@@ -35,42 +35,54 @@ POST /api/articles
 PUT /api/articles/:id
 DELETE /api/articles/:id
 
-## Phase 2 – Automated Content Enhancement (Work in Progress)
-Objective
+## Phase 2 core automation completed. Further enhancements in progress.
+# Phase 2 – Automated Article Enhancement (Work in Progress)
 
-Automate article improvement using external research and AI.
+## Overview
+Phase 2 focuses on automating the process of enhancing existing blog articles using external references and a Large Language Model (LLM).  
+This phase is implemented as a standalone automation script and does not require running the backend server.
 
-Current Workflow
+---
 
-Stored Articles
-→ Google Search (SerpAPI)
-→ External Article URLs
-→ Full Content Scraping
-→ LLM-based Enhancement (in progress)
-→ Update via REST API
+## What Has Been Implemented ✅
 
-Completed So Far
+### 1. Article Fetching
+- Fetches existing articles from MongoDB
+- Uses article titles and content as base input for enhancement
 
-- Automation script separated from backend server
+### 2. External Reference Scraping
+- Uses **SerpAPI** to search for relevant external articles based on article titles
+- Extracts and stores reference URLs for contextual enrichment
 
-- Google search integration using SerpAPI
+### 3. AI-Based Content Enhancement
+- Integrates **Google Gemini (gemini-2.5-flash)** using the official SDK
+- Generates improved article content using:
+  - Original article content
+  - External reference context
+- Ensures:
+  - No verbatim copying
+  - Original intent preserved
+  - Improved clarity, structure, and depth
 
-- Filters out original domain results
+### 4. Automation Script
+- Implemented in `automation/updateArticles.js`
+- Can be executed independently using Node.js
+- Environment variables loaded securely from backend `.env`
 
-- Scrapes full content from external articles
+---
 
-- Robust scraping with browser-like User-Agent
+## Current Status 🚧
+- Core automation logic is **fully functional**
+- Enhanced content is generated and logged successfully
+- Storing enhanced content back into the database is planned as a next step
 
-In Progress
+---
 
-- LLM prompt design
+## Tech Stack
+- Node.js (ES Modules)
+- MongoDB + Mongoose
+- SerpAPI (external search)
+- Google Gemini API (`@google/generative-ai`)
+- dotenv
 
-- AI-based content rewriting
-
-- Updating articles with enhanced content
-
-- Marking articles as updated
-
-Author
-
-Samir Shaikh
+---
