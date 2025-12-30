@@ -35,7 +35,7 @@ POST /api/articles
 PUT /api/articles/:id
 DELETE /api/articles/:id
 
-## Phase 2 core automation completed. Further enhancements in progress.
+
 # Phase 2 – Automated Article Enhancement (Work in Progress)
 
 ## Overview
