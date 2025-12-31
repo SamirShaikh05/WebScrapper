@@ -5,7 +5,7 @@ It is implemented in phases, following real-world backend, API, and automation p
 
 ---
 
-## Phase 1 – Blog Scraping & REST API (Completed)
+## Phase 1 – Blog Scraping & REST API 
 
 ### Objective
 - Scrape the latest blog articles from BeyondChats
@@ -38,7 +38,7 @@ Node.js (ES Modules), Express.js, MongoDB Atlas, Mongoose, Axios, Cheerio, doten
 
 ---
 
-## Phase 2 – Automated Article Enhancement (Completed)
+## Phase 2 – Automated Article Enhancement
 
 ### Overview
 Phase 2 automates the enhancement of existing blog articles using external references and an AI language model.  
@@ -100,8 +100,31 @@ This phase is implemented as a standalone automation script and uses the Phase 1
 
 ---
 
-## Project Status
-✅ Phase 1 – Completed  
-✅ Phase 2 – Completed  
+## Phase 3 - Frontend
 
-This project demonstrates end-to-end backend development, including web scraping, REST APIs, background automation, and AI-powered content enhancement.
+To visually validate the backend APIs and AI-enhanced content, a minimal frontend was added.
+
+
+## Execution Proof (Frontend)
+
+### Frontend UI – Article Viewer
+![Frontend UI](./screenshots/frontend.png)
+
+---
+
+### MongoDB Atlas – Updated Articles
+![MongoDB Atlas Updated Records](./screenshots/updatedArticles.png)
+
+---
+
+### Overview
+- Fetches articles from the backend REST API
+- Displays scraped and AI-enhanced blog content
+- Reflects updates made during Phase 2 automation
+
+---
+
+### Tech Stack (Frontend)
+- React (Vite)
+- Axios
+- Plain CSS (Will Replace With Tailwind Later)
