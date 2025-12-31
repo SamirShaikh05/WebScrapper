@@ -1,88 +1,96 @@
 # BeyondChats – Blog Scraper & Content Enhancement System
 
 This project is developed as part of the **BeyondChats Full Stack Developer Intern Assignment**.  
-It is built in phases, following real-world backend and automation practices.
+It is implemented in phases, following real-world backend, API, and automation practices.
 
 ---
 
 ## Phase 1 – Blog Scraping & REST API (Completed)
 
 ### Objective
-- Scrape blog articles from BeyondChats(Last 5)
-- Store them in MongoDB Databse
-- Expose RESTful CRUD APIs
+- Scrape the latest blog articles from BeyondChats
+- Store them in a MongoDB database
+- Expose RESTful CRUD APIs for article management
 
 ### Tech Stack
 Node.js (ES Modules), Express.js, MongoDB Atlas, Mongoose, Axios, Cheerio, dotenv
 
 ### Core Features
-- Scrapes the **5 oldest blog articles** from: https://beyondchats.com/blogs/
-- Prevents duplicate inserts using `sourceUrl` and MongoDB upsert
+- Scrapes the **latest 5 blog articles** from: https://beyondchats.com/blogs/
+- Extracts title, excerpt content, and source URL
+- Prevents duplicate inserts using unique `sourceUrl`
 - Idempotent scraper (safe to re-run)
-- Clean REST API design
+- Clean and standard REST API design
 
 ### Article Fields
 - `title`
-- `content` (excerpt)
+- `content` (initial excerpt)
 - `sourceUrl` (unique)
 - `isUpdated`
-- timestamps
+- `createdAt`, `updatedAt`
 
 ### API Endpoints
-GET /api/articles
-GET /api/articles/:id
-POST /api/articles
-PUT /api/articles/:id
-DELETE /api/articles/:id
-
-
-# Phase 2 – Automated Article Enhancement (Work in Progress)
-
-## Overview
-Phase 2 focuses on automating the process of enhancing existing blog articles using external references and a Large Language Model (LLM).  
-This phase is implemented as a standalone automation script and does not require running the backend server.
+- `GET /api/articles`
+- `GET /api/articles/:id`
+- `POST /api/articles`
+- `PUT /api/articles/:id`
+- `DELETE /api/articles/:id`
 
 ---
 
-## What Has Been Implemented 
+## Phase 2 – Automated Article Enhancement (Completed)
 
-### 1. Article Fetching
-- Fetches existing articles from MongoDB
-- Uses article titles and content as base input for enhancement
+### Overview
+Phase 2 automates the enhancement of existing blog articles using external references and an AI language model.  
+This phase is implemented as a standalone automation script and uses the Phase 1 CRUD APIs to publish updates.
 
-### 2. External Reference Scraping
-- Uses **SerpAPI** to search for relevant external articles based on article titles
-- Extracts and stores reference URLs for contextual enrichment
+---
 
-### 3. AI-Based Content Enhancement
+### What Has Been Implemented
+
+#### 1. Article Fetching
+- Fetches existing articles via REST API
+- Skips articles already marked as updated
+- Uses article title and original content as base input
+
+#### 2. External Reference Scraping
+- Uses **SerpAPI** to search Google for relevant reference articles
+- Scrapes content from external sources for contextual enrichment
+
+#### 3. AI-Based Content Enhancement
 - Integrates **Google Gemini (gemini-2.5-flash)** using the official SDK
 - Generates improved article content using:
   - Original article content
-  - External reference context
+  - External reference content
 - Ensures:
   - No verbatim copying
   - Original intent preserved
   - Improved clarity, structure, and depth
 
-### 4. Automation Script
+#### 4. Publishing Enhanced Articles
+- Appends reference links at the bottom of the enhanced article
+- Publishes the updated article using existing CRUD APIs
+- Marks articles as updated to prevent reprocessing
+
+#### 5. Automation Script
 - Implemented in `automation/updateArticles.js`
-- Can be executed independently using Node.js
+- Runs independently using Node.js
+- Safe to re-run (idempotent)
 - Environment variables loaded securely from backend `.env`
 
 ---
 
-## Current Status 
-- Core automation logic is **fully functional**
-- Enhanced content is generated and logged successfully
-- Storing enhanced content back into the database is planned as a next step
-
----
-
-## Tech Stack
+## Tech Stack (Phase 2)
 - Node.js (ES Modules)
 - MongoDB + Mongoose
-- SerpAPI (external search)
+- SerpAPI (Google Search)
 - Google Gemini API (`@google/generative-ai`)
-- dotenv
+- Axios, dotenv
 
 ---
+
+## Project Status
+✅ Phase 1 – Completed  
+✅ Phase 2 – Completed  
+
+This project demonstrates end-to-end backend development, including web scraping, REST APIs, background automation, and AI-powered content enhancement.
